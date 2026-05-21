@@ -1,0 +1,96 @@
+Hola, aquí están las instrucciones para usar la aplicación:
+
+APLICACIÓN DE CÁLCULO DE DISTANCIAS ENTRE CONTENEDORES
+=====================================================
+
+Archivos creados:
+- main.py                    (Interfaz gráfica - RECOMENDADO)
+- script_cli.py              (Versión línea de comandos)
+- data_handler.py            (Módulo de datos)
+- distance_calculator.py     (Módulo de distancias)
+- destinos.xlsx              (Tu archivo de entrada)
+- README.md                  (Documentación completa)
+
+
+OPCIÓN 1: INTERFAZ GRÁFICA (Recomendado)
+==========================================
+
+Ejecuta en PowerShell:
+  python main.py
+
+Luego en la ventana de la aplicación:
+  1. Haz clic en "1. Cargar datos (Excel)"
+  2. Haz clic en "2. Calcular Distancias"
+     - Elige entre OSRM (distancia real, ~10 min) o Haversine (rápido, <1 min)
+  3. Haz clic en "3. Exportar Datos"
+     - Elige el formato (Excel, JSON o CSV)
+  4. Ver la matriz en la tabla
+
+
+OPCIÓN 2: LÍNEA DE COMANDOS
+============================
+
+Ejecuta en PowerShell:
+  python script_cli.py
+
+El script automáticamente:
+- Carga los 48 contenedores
+- Te pregunta qué método usar
+- Calcula la matriz
+- Genera 3 archivos de salida
+
+
+¿CUÁL MÉTODO DE CÁLCULO USAR?
+==============================
+
+OSRM (Distancia en carretera):
+  - Más preciso, sigue las carreteras reales
+  - Tarda ~10 minutos para 48 contenedores
+  - Mejor para análisis serio
+  - Requiere conexión a internet
+
+Haversine (Distancia en línea recta):
+  - Muy rápido (<1 minuto)
+  - Menos preciso, no sigue carreteras
+  - Bueno para vista previa
+  - No requiere conexión a internet
+
+
+ARCHIVOS DE SALIDA
+===================
+
+Después de calcular, tendrás:
+
+distancias_matriz.xlsx
+  - Matriz en Excel
+  - Fila = Contenedor origen
+  - Columna = Contenedor destino
+  - Valores = Distancia en km
+
+distancias_matriz.json
+  - Matriz en formato JSON
+  - Estructura: {"1": {"1": 0.0, "2": 1.23, ...}, ...}
+  - Incluye timestamp
+
+distancias_matriz.csv
+  - Matriz en CSV
+  - Compatible con cualquier herramienta
+
+
+SOLUCIÓN DE PROBLEMAS
+======================
+
+Error: "archivo 'destinos.xlsx' no encontrado"
+  → Asegúrate de estar en la carpeta correcta
+  → El archivo debe estar junto a main.py
+
+Error: "No se encontró Python"
+  → Abre PowerShell en la carpeta TFG_org
+  → Usa: python main.py
+
+Lento con OSRM
+  → Es normal, calcula distancias reales
+  → Tarda 10-15 minutos para 48 contenedores
+  → Deja que termine
+
+Para más detalles, lee README.md
